@@ -33,6 +33,28 @@ export default class Resolver {
     }
 
     /**
+     * @param {string} resource
+     * @param {string|null} namespace
+     * @returns {boolean}
+     */
+    hasResource(resource, namespace) {
+        if (namespace != null) {
+            return typeof this.resourceAssets[namespace] === 'object'
+                && Object.prototype.hasOwnProperty.call(this.resourceAssets[namespace], resource);
+        }
+
+        for (const ns of Object.keys(this.resourceAssets)) {
+            for (const res of Object.keys(this.resourceAssets[ns])) {
+                if (resource === res) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @param {Object} list
      * @param {string} namespace
      */
