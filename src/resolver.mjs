@@ -7,21 +7,21 @@ export default class Resolver {
     /**
      * @param {string} resource
      * @param {string|null} namespace
-     * @returns {string}
+     * @returns {string|null}
      */
     fromResource(resource, namespace) {
         if (namespace != null) {
             return this.resourceAssets[namespace] && this.resourceAssets[namespace][resource]
                 ? this.resourceAssets[namespace][resource]
-                : '';
+                : null;
         }
 
-        let asset = '';
+        let asset = null;
 
         for (const ns of Object.keys(this.resourceAssets)) {
             for (const res of Object.keys(this.resourceAssets[ns])) {
                 if (resource === res) {
-                    if (asset !== '') {
+                    if (asset !== null) {
                         throw new Error(`There are two or more assets found for resource: ${resource}`);
                     }
                     asset = this.resourceAssets[ns][res];

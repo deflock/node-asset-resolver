@@ -21,6 +21,7 @@
     "prepublishOnly": "yarn test"
   },
   "dependencies": {
+    "@deflock/fs": "^0.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
