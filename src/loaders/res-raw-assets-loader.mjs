@@ -5,7 +5,7 @@ import Loader from './loader';
 /**
  *
  */
-export default class RawAssetsLoader extends Loader {
+export default class ResRawAssetsLoader extends Loader {
     /**
      * @param {string} basedir
      */
@@ -19,7 +19,7 @@ export default class RawAssetsLoader extends Loader {
      * @returns {boolean}
      */
     supports(params) {
-        return typeof params === 'object' && params.type === 'raw-assets';
+        return typeof params === 'object' && params.type === 'res-raw-assets';
     }
 
     /**

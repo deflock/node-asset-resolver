@@ -32,7 +32,21 @@ export default class JsonFileLoader extends Loader {
                 if (err) {
                     reject(err);
                 }
-                resolve(JSON.parse(content));
+
+                if (content == null) {
+                    reject(new Error('Content is undefined'));
+                }
+
+                let map;
+
+                try {
+                    map = JSON.parse(content);
+                }
+                catch (e) {
+                    reject(e);
+                }
+
+                resolve(map);
             });
         });
     }

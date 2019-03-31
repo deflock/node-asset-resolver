@@ -3,6 +3,7 @@
  */
 export default class Resolver {
     resourceAssets = {};
+    rawAssets = {};
 
     /**
      * @param {string} resource
@@ -80,5 +81,38 @@ export default class Resolver {
         else {
             delete this.resourceAssets[namespace];
         }
+    }
+
+    /**
+     * @param {string} raw
+     * @returns {string|null}
+     */
+    fromRaw(raw) {
+        return this.rawAssets && this.rawAssets[raw]
+            ? this.rawAssets[raw]
+            : null;
+    }
+
+    /**
+     * @param {string} raw
+     * @returns {boolean}
+     */
+    hasRaw(raw) {
+        return typeof this.rawAssets === 'object'
+            && Object.prototype.hasOwnProperty.call(this.rawAssets, raw);
+    }
+
+    /**
+     * @param {Object} list
+     */
+    addRawAssets(list) {
+        Object.assign(this.rawAssets, list);
+    }
+
+    /**
+     *
+     */
+    clearRawAssets() {
+        this.rawAssets = {};
     }
 }
